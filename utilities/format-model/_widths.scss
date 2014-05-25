@@ -1,0 +1,10 @@
+// =============================
+// Viewport Width Utility Helper Attributes
+// =============================
+
+// Viewport Width Utility Helper Attributes are generated via the below mixin to namespace attributes for certain viewports.
+// The advantage to this, is it allows a responsive layout to be generated from the attributes added to a certain element.
+// Note - Grid__Item class within grids partial, is used to replace any full width helper class.
+// Example Use: data-desk="desk-4-12" data-lap="lap-4/6".
+
+@include grid-percentage-generator();
