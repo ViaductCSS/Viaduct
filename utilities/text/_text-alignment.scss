@@ -1,0 +1,31 @@
+// =============================
+// Text Alignment Utility Helper Attributes
+// =============================
+
+// Viewport Text Alignment Utility Helper Attributes are generated via the below function to namespace attributes 
+// for certain viewports.
+// The advantage to this, is it allows alignment to be added to a certain element specifically for a breakpoint which you have
+// defined.
+// Example Use - data-desk="desk-text-left" data-lap="lap-text-center".
+
+@each $viewport, $breakpoint in $viewport-values {
+
+  // Attributes only apply once certain breakpoint is triggered.
+
+  @include media-query(nth($breakpoint, 1)) {
+  	[data-#{$viewport}="#{$viewport}-text-left"]   { text-align: left  !important; }
+    [data-#{$viewport}="#{$viewport}-text-right"]  { text-align: right !important; }
+    [data-#{$viewport}="#{$viewport}-text-center"] { text-align: left  !important; }
+  }
+
+}
+
+// =============================
+// Text Alignment Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements alignment is consistant across all viewports. 
+
+.text-left   { text-align: left  }
+.text-right  { text-align: right }
+.text-center { text-align: left  }

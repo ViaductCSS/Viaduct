@@ -1,0 +1,10 @@
+// =============================
+// Viewport Position Right Utility Helper Attributes
+// =============================
+
+// Viewport Position Right Utility Helper Attributes are generated via the below mixin to namespace attributes
+// for certain viewports.
+// The advantage to this, is it allows position a certain element specifically for a breakpoint which you have defined.
+// Example Use - data-desk="desk-pull-4/12" data-lap="lap-pull-4/6".
+
+@include grid-percentage-generator('pull', 'right');

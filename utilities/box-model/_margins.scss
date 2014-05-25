@@ -1,0 +1,33 @@
+// =============================
+// Viewport Margin Utility Helper Attributes
+// =============================
+
+// Viewport Margin Utility Helper Attributes are generated via the below mixin to namespace attributes for certain viewports.
+// The advantage to this, is it allows margins to be added to a certain element specifically for a breakpoint which you have defined.
+// Example Use - data-desk="desk-mar-r-2x" data-palm="palm-mar-r-0".
+
+// Attribute Name Key
+// -t- = Top
+// -b- = Bottom
+// -l- = Left
+// -r- = Right
+// -e- = Ends  (Top & Bottom)
+// -s- = Sides (Left & Right)
+
+@each $viewport, $viewport-val in $viewport-values {
+
+    // Attributes only apply once certain breakpoint is triggered.
+
+    @include media-query(nth($viewport-val, 1)) {
+        @include generate-spacing("margin", $global-spacing-values, $viewport);
+    }
+
+}
+
+// =============================
+// Viewport Margin Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports.
+
+@include generate-spacing("margin", $global-spacing-values);

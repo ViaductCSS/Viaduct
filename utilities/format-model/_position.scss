@@ -1,0 +1,27 @@
+// =============================
+// Viewport Position Utility Helper Attributes
+// =============================
+
+// Viewport Position Utility Helper Attributes are generated via the below loop to namespace attributes for certain viewports.
+// The advantage to this, is it allows position to be added to a certain element specifically for a breakpoint which you have defined.
+// Example Use - data-desk="desk-position-absolute" data-lap="lap-position-static".
+
+@each $viewport, $breakpoint in $viewport-values {
+  
+  @include media-query(nth($breakpoint, 1)) {
+    [data-#{$viewport}="#{$viewport}-position-static"]   { position: static   !important; }
+    [data-#{$viewport}="#{$viewport}-position-relative"] { position: relative !important; }
+    [data-#{$viewport}="#{$viewport}-position-absolute"] { position: absolute !important; }
+  }
+
+}
+
+// =============================
+// Position Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports. 
+
+.position-static   { position: static   }
+.position-relative { position: relative }
+.position-absolute { position: absolute }
