@@ -1,0 +1,93 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$flag-pattern-enable:          true !default;
+$flag-pattern-reversed-enable: true !default;
+
+// =============================
+// Core Flag Pattern Styling
+// =============================
+
+// The flag pattern similar is to the media pattern, however it utilises 
+// `display: table[-cell];` to give us control over the vertical
+// alignments of the text and image. csswizardry.com/2013/05/the-flag-object
+
+//
+// Flag Pattern Default.
+// Note - Reversed Version is the diagram below but the elements are in opposite positions.
+// 
+//    Flag Sidebar               Flag Body
+//
+//                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~   
+//    ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+//    ~         ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//    ~         ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//    ~         ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~    
+//    ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//
+
+//
+// Flag Pattern Bottom Modifier.
+// Note - Reversed Version is the diagram below but the elements are in opposite positions.
+//
+//    Flag Sidebar              Flag Body                     
+//
+//                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//                   ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//    ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+//    ~         ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//    ~         ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//    ~         ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~    
+//    ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+//   
+
+@if ($flag-pattern-enable) {
+    .flag {
+        @extend [class~="span-1x"];
+        display: table;
+    }
+        
+        .flag__sidebar,
+        .flag__body,
+        .flag__sidebar--bottom,
+        .flag__body--bottom {
+            display: table-cell;
+        }
+
+        .flag__sidebar,
+        .flag__body {
+            vertical-align: middle;
+        }
+
+        .flag__sidebar--bottom,
+        .flag__body--bottom {
+            vertical-align: bottom;
+        }
+
+        .flag__body {
+            @extend [class~="span-1x"];
+        }
+
+            [class*="flag__sidebar"] img {
+                display: block;
+                max-width: none;
+            }
+}
+
+// Set Direction to reverse the layout of the pattern elements.
+
+@if ($flag-pattern-enable and $flag-pattern-reversed-enable) {
+    .flag--rev {
+        @extend .flag;
+        direction: rtl;
+
+        * {
+            direction: ltr;
+        }
+
+    }
+}

@@ -1,5 +1,5 @@
 // =============================
-// Percentage Calculation Function
+// Core Percentage Calculation Function
 // =============================
 
 // Calculate a percentage value using the formula: target ÷ context.
@@ -18,7 +18,7 @@
 }
 
 // =============================
-// EM Unit Calculation Function
+// Core EM Unit Calculation Function
 // =============================
 
 // Calculate a EM value using the formula: target ÷ context.
@@ -41,7 +41,7 @@
 }
 
 // =============================
-// REM Unit Calculation Function
+// Core REM Unit Calculation Function
 // =============================
 
 // Calculate a REM value using the formula: target ÷ context.
@@ -53,7 +53,7 @@
 }
 
 // =============================
-// Map Value Checking Function
+// Core Map Value Checking Function
 // =============================
 
 // Checks whether the value of $needle is present within the map
@@ -83,7 +83,7 @@
 }
 
 // =============================
-// Map Count Function
+// Core Map Count Function
 // =============================
 
 // Counts the number of items within a given map.
@@ -110,7 +110,7 @@
 }
 
 // =============================
-// To Number Function
+// Core To Number Function
 // =============================
 
 // Converts a string into a number.
@@ -137,119 +137,4 @@
             @return $i;
         }
     }
-}
-
-// =============================
-// Spacing Multiply Function
-// =============================
-
-// Multiplies the base spacing unit by a given amount.
-// Note - Primarily used within Spacing Mixins.
-
-// Parameter Description:
-//
-// $amount - Integer value containing the value you would like to multiply.
-//
-
-// Example Use:
-//
-// spacing-multiply(3)
-//
-
-@function spacing-multiply($amount: 1) {
-    @if $amount == '1' {
-        @return $base-spacing-unit;
-    } @else {
-        @return calc-rem($base-spacing-unit, $base-font-size) * to-number($amount);
-    }
-}
-
-// =============================
-// Spacing Divide Function
-// =============================
-
-// Divides the base spacing unit by a given amount.
-// Note - Primarily used within Spacing Mixins.
-
-// Parameter Description:
-//
-// $amount - Integer value containing the value you would like to divide.
-//
-
-// Example Use:
-//
-// spacing-divide(3)
-//
-
-@function spacing-divide($amount: 1) {
-    @if $amount == '1' {
-        @return $base-spacing-unit;
-    } @else {
-        @return calc-rem($base-spacing-unit, $base-font-size) / to-number($amount);
-    }
-}
-
-// =============================
-// Spacing Calculation Function
-// =============================
-
-// Calculates the spacing based on a given unit as used by spacing classes.
-// Note - Primarily used within Spacing Mixins.
-
-// Parameter Description:
-//
-// $unit - String value containing the multiple in which you want to 
-// calculate $calculated unit. // "1x" or "1/2"
-//
-
-// Example Use:
-//
-// spacing-calc("3x")
-//
-
-@function spacing-calc($unit: "1x") {
-    $calculated-unit: '';
-    $operator: str-slice($unit, 2, 2);
-
-    @if $operator == 'x' {
-        $amount: str-slice($unit, 1, 1);
-        $calculated-unit: spacing-multiply($amount);
-    } @else if $operator == '/' {
-        $amount: str-slice($unit, -1, -1);
-        $calculated-unit: spacing-divide($amount);
-    } @else {
-        $calculated-unit: 0;
-    }
-
-    @return $calculated-unit;
-}
-
-// =============================
-// Spacing Namespace Function
-// =============================
-
-// Creates the namespace to be used by the spacing mixin.
-// Note - Primarily used within Spacing Mixins.
-
-// Parameter Description:
-//
-// $namespace - String value containing a namespace property. // "Desk"
-// $property  - String value containing a CSS property.       // "Padding"
-//
-
-// Example Use:
-//
-// spacing-namespace("module", "margin"); // "module-mar"
-//
-
-@function spacing-namespace($namespace: false, $property: 'padding') {
-    $full-namespace: '';
-
-    @if not $namespace {
-        $full-namespace: str-slice($property, 1, 3);
-    } @else {
-        $full-namespace: #{$namespace}-#{str-slice($property, 1, 3)};
-    }
-
-    @return $full-namespace;
 }

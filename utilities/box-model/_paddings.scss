@@ -1,10 +1,28 @@
 // =============================
+// Enable Private Variables
+// =============================
+
+$paddings-enable:          true !default;
+$viewport-paddings-enable: true !default;
+
+// =============================
+// Global Padding Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports. 
+// Example Use - class="pad-r-2x".
+
+@if ($paddings-enable) {
+	@include generate-spacing("padding", $global-spacing-values);
+}
+
+// =============================
 // Viewport Padding Utility Helper Attributes
 // =============================
 
-// Viewport Padding Utility Helper Attributes are generated via the below mixin to namespace attributes for certain viewports.
+// Viewport Padding Utility Helper Attributes are generated via the below mixin to create attributes for certain viewports.
 // The advantage to this, is it allows padding to be added to a certain element specifically for a breakpoint which you have defined.
-// Example Use - data-desk="desk-pad-r-2x" data-palm="palm-pad-r-0".
+// Example Use - data-desk="pad-r-2x" data-palm="pad-r-0".
 
 // Attribute Name Key
 // -t- = Top
@@ -14,21 +32,13 @@
 // -e- = Ends  (Top & Bottom)
 // -s- = Sides (Left & Right)
 
-@each $viewport, $viewport-val in $viewport-values {
+@if ($viewport-paddings-enable) {
+	@each $viewport, $viewport-val in $viewport-values {
 
-    // Classes only apply once certain breakpoint is triggered.
+	    // Attributes only apply once certain breakpoint is triggered.
+		@include media-query(nth($viewport-val, 1)) {
+			@include generate-spacing("padding", $global-spacing-values, $viewport);
+		}
 
-    @include media-query(nth($viewport-val, 1)) {
-
-		@include generate-spacing("padding", $global-spacing-values, $viewport);
-    }
-
+	}
 }
-
-// =============================
-// Viewport Padding Utility Helper Classes
-// =============================
-
-// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports. 
-
-@include generate-spacing("padding", $global-spacing-values);

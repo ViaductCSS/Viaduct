@@ -1,0 +1,92 @@
+// =============================
+// Global Default Variables
+// =============================
+
+// Global Spacing Values List contains all multiples of the base-spacing-unit value you would like to generate
+// within both your padding and margin utility partials.
+// Note - Fractions will divide the base-spacing value, and values which are proceeded by an "x"
+// multiply the base-spacing value. 0 will create instances which remove spacing.
+
+$global-spacing-values: ("1/2", "1x", "2x", "3x", "0") !default;
+
+// Global Spacing Directions Map contains all the spacing variations which are to be generated
+// when calling the generate-spacing mixin.
+// Example - t: (top) property called with Margin, would result in mar-t-* attributes being generated.
+
+// Value Key:
+// -t- = Top
+// -b- = Bottom
+// -l- = Left
+// -r- = Right
+// -e- = Ends  (Top & Bottom)
+// -s- = Sides (Left & Right)
+
+$global-spacing-directions: (
+    t:  (top),
+    b:  (bottom),
+    l:  (left),
+    r:  (right),
+    e:  (top, bottom),
+    s:  (left, right)
+) !default;
+
+// Set Global Box Sizing Variable to true by default, so it takes effect on all elements.
+// Note - Changing this value to false will result in only adding box-sizing to grid-item elements.
+
+$global-box-sizing: true !default;
+
+// =============================
+// Aesthetic Base Default Variables
+// =============================	
+
+// Base Background & Text Colors are defaulted for the purposes of setting the values on the html element,
+// in the reset partial.
+
+$base-background-color: #FFF !default;
+$base-text-color:       #333 !default;
+
+// =============================
+// Textual Base Default Variables
+// =============================
+
+// Font Stacks are stored within variables to allow for reusability and extensibility.
+// Note - Alpha stack should contain your most prominent textual font, as it is added to the body element to cascade.
+// Reasoning for default stack - http://www.jordanm.co.uk/tinytype.
+
+$font-family-alpha: Helvetica Neue, Helvetica, Verdana, Roboto, sans-serif !default;
+
+// Base Font Size & Line Height is defaulted for the purposes of setting the font size on the html,
+// as well as providing a default value for various mixins and functions.
+
+$base-font-size:   16px !default;
+$base-line-height: 24px !default;
+
+// =============================
+// Spacing Base Default Variables
+// =============================
+
+// Base Horizontal Spacing Unit gives us a unit for padding and margin purposes, to create multiple of.
+// This value should be based off the gutter defined in your grid.
+// Note - This should be changed within your local file, to reflect your applications requirements.
+
+$base-spacing-unit: 20px !default;
+
+// =============================
+// Viewport Base Default Variables
+// =============================
+
+// Viewport Values Map contains breakpoint values/sub-values which are used throughout applications,
+// within mixins, functions and for looping directives to namespace certain elements.
+// Example - $breakpoint parameter within the media-query mixin, uses the first element in each list.
+// Parameter Description:
+//
+// List[1] - The viewport maximum width.
+// List[2] - The number of columns in the grid for that defined viewport.
+
+// Note - Order of properties is mandatory due to specificity within outputted CSS.
+
+$viewport-values: (
+	desk: (3000, 12),
+	lap:  (1024, 8),
+	palm: (640,  4)
+) !default;

@@ -1,17 +1,25 @@
 // =============================
+// Enable Private Variables
+// =============================
+
+$clearfix-enable: true !default;
+
+// =============================
 // Clearfix Utility Helper Class
 // =============================
 
-.clearfix {
+@if ($clearfix-enable) {
+	.clearfix {
 
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-  }
+	  &:before,
+	  &:after {
+	    content: " ";
+	    display: table;
+	  }
 
-  &:after {
-    clear: both;
-  }
+	  &:after {
+	    clear: both;
+	  }
 
+	}
 }

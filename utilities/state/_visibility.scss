@@ -1,0 +1,68 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$visibility-enable:          true !default;
+$viewport-visibility-enable: true !default;
+
+// =============================
+// Visibility Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements visibility is consistant across all viewports. 
+
+@if ($visibility-enable) {
+  .is-hidden {
+      display: none !important;
+      visibility: hidden !important;
+  }
+
+  .is-hidden-visually {
+      position: absolute !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      clip: rect(1px, 1px, 1px, 1px) !important;
+  }
+}
+
+// =============================
+// Visibility Utility Helper Attributes
+// =============================
+
+@if ($viewport-visibility-enable) {
+  @each $viewport, $breakpoint in $viewport-values {
+
+    // Attributes only apply once certain breakpoint is triggered.
+
+    @include media-query(nth($breakpoint, 1)) {
+
+    	// Is Hidden Utility Helper Attribute removes elements completely from document, making them not 
+    	// visible to screen readers.
+  	  // Example Use - data-desk="desk-is-hidden".
+
+    	[data-#{$viewport}="is-hidden"] {
+    	    display: none !important;
+    	    visibility: hidden !important;
+    	}
+
+    	// Is Hidden Utility Helper Attribute removes elements from the flow of the document, but they are still 
+    	// visible to screen readers.
+    	// Example - data-desk="desk-is-hidden".
+
+    	[data-#{$viewport}="is-hidden-visually"] {
+    	    position: absolute !important;
+    	    overflow: hidden !important;
+    	    width: 1px !important;
+    	    height: 1px !important;
+    	    padding: 0 !important;
+    	    border: 0 !important;
+    	    clip: rect(1px, 1px, 1px, 1px) !important;
+    	}
+  	
+    }
+
+  }
+}

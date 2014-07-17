@@ -1,5 +1,7 @@
+$_global-box-sizing: $global-box-sizing;
+
 // =============================
-// Page Reset Styling
+// Base Reset Styling
 // =============================
 
 body,
@@ -16,7 +18,7 @@ hr {
 // If Global Box Sizing Boolean is set to true, add box-sizing to all elements.
 // Note - For alternative approach, view grids partial.
 
-@if $global-box-sizing == true {
+@if $_global-box-sizing == true {
 	* {
 	    &,
 	    &:before,

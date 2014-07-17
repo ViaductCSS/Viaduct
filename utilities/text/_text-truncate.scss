@@ -1,4 +1,10 @@
 // =============================
+// Enable Private Variables
+// =============================
+
+$text-truncate-enable: true !default;
+
+// =============================
 // Text Truncation Utility Helper Class
 // =============================
 
@@ -8,10 +14,12 @@
 // 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor nodes.
 //
 
-.text-truncate {
-    max-width: 100%;              // 1
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-    word-wrap: normal !important; // 2
+@if ($text-truncate-enable) {
+	.text-truncate {
+	    max-width: 100%;              // 1
+	    overflow: hidden !important;
+	    text-overflow: ellipsis !important;
+	    white-space: nowrap !important;
+	    word-wrap: normal !important; // 2
+	}	
 }

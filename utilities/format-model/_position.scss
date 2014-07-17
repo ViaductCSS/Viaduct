@@ -1,20 +1,9 @@
 // =============================
-// Viewport Position Utility Helper Attributes
+// Enable Private Variables
 // =============================
 
-// Viewport Position Utility Helper Attributes are generated via the below loop to namespace attributes for certain viewports.
-// The advantage to this, is it allows position to be added to a certain element specifically for a breakpoint which you have defined.
-// Example Use - data-desk="desk-position-absolute" data-lap="lap-position-static".
-
-@each $viewport, $breakpoint in $viewport-values {
-  
-  @include media-query(nth($breakpoint, 1)) {
-    [data-#{$viewport}="#{$viewport}-position-static"]   { position: static   !important; }
-    [data-#{$viewport}="#{$viewport}-position-relative"] { position: relative !important; }
-    [data-#{$viewport}="#{$viewport}-position-absolute"] { position: absolute !important; }
-  }
-
-}
+$position-enable:          true !default;
+$viewport-position-enable: true !default;
 
 // =============================
 // Position Utility Helper Classes
@@ -22,6 +11,30 @@
 
 // Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports. 
 
-.position-static   { position: static   }
-.position-relative { position: relative }
-.position-absolute { position: absolute }
+@if ($position-enable) {
+	.position-static   { position: static   }
+	.position-relative { position: relative }
+	.position-absolute { position: absolute }
+}
+
+// =============================
+// Viewport Position Utility Helper Attributes
+// =============================
+
+// Viewport Position Utility Helper Attributes are generated via the below loop to create attributes for certain viewports.
+// The advantage to this, is it allows position to be added to a certain element specifically for a breakpoint which you have defined.
+// Example Use - data-desk="position-absolute" data-lap="position-static".
+
+@if ($viewport-position-enable) {
+	@each $viewport, $breakpoint in $viewport-values {
+
+		// Attributes only apply once certain breakpoint is triggered.
+		
+		@include media-query(nth($breakpoint, 1)) {
+			[data-#{$viewport}="position-static"]   { position: static   !important; }
+			[data-#{$viewport}="position-relative"] { position: relative !important; }
+			[data-#{$viewport}="position-absolute"] { position: absolute !important; }
+		}
+
+	}
+}

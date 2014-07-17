@@ -1,5 +1,24 @@
 // =============================
-// Text Alignment Utility Helper Attributes
+// Enable Private Variables
+// =============================
+
+$text-alignment-enable:          true !default;
+$viewport-text-alignment-enable: true !default;
+
+// =============================
+// Text Alignment Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements alignment is consistant across all viewports. 
+
+@if ($text-alignment-enable) {
+	.text-left   { text-align: left;   }
+	.text-right  { text-align: right;  }
+	.text-center { text-align: center; }
+}
+
+// =============================
+// Viewport Text Alignment Utility Helper Attributes
 // =============================
 
 // Viewport Text Alignment Utility Helper Attributes are generated via the below function to namespace attributes 
@@ -8,24 +27,16 @@
 // defined.
 // Example Use - data-desk="desk-text-left" data-lap="lap-text-center".
 
-@each $viewport, $breakpoint in $viewport-values {
+@if ($viewport-text-alignment-enable) {
+	@each $viewport, $breakpoint in $viewport-values {
 
-  // Attributes only apply once certain breakpoint is triggered.
+		// Attributes only apply once certain breakpoint is triggered.
 
-  @include media-query(nth($breakpoint, 1)) {
-  	[data-#{$viewport}="#{$viewport}-text-left"]   { text-align: left  !important; }
-    [data-#{$viewport}="#{$viewport}-text-right"]  { text-align: right !important; }
-    [data-#{$viewport}="#{$viewport}-text-center"] { text-align: left  !important; }
-  }
+		@include media-query(nth($breakpoint, 1)) {
+			[data-#{$viewport}="text-left"]   { text-align: left   !important; }
+			[data-#{$viewport}="text-right"]  { text-align: right  !important; }
+			[data-#{$viewport}="text-center"] { text-align: center !important; }
+		}
 
+	}
 }
-
-// =============================
-// Text Alignment Utility Helper Classes
-// =============================
-
-// Un-namespaced Classes are to be used globally when an elements alignment is consistant across all viewports. 
-
-.text-left   { text-align: left  }
-.text-right  { text-align: right }
-.text-center { text-align: left  }
