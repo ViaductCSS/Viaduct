@@ -2,7 +2,7 @@
 // Core Percentage Calculation Function
 // =============================
 
-// Calculate a percentage value using the formula: target ÷ context.
+// Calculate a percentage value using the formula: target / context.
 // Parameter Description:
 //
 // $target  - The value (in pixels) of the elements property you are setting the percentage for.
@@ -21,7 +21,7 @@
 // Core EM Unit Calculation Function
 // =============================
 
-// Calculate a EM value using the formula: target ÷ context.
+// Calculate a EM value using the formula: target / context.
 // Your context is the font-size of the parent element.
 // If you set the value on a textual element, your context is the element font-size.
 
@@ -44,7 +44,7 @@
 // Core REM Unit Calculation Function
 // =============================
 
-// Calculate a REM value using the formula: target ÷ context.
+// Calculate a REM value using the formula: target / context.
 // Your context is the font-size of the root element.
 // Note - This is required for font-sizing mixin.
 
