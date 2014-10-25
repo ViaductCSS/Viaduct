@@ -2,15 +2,16 @@
 // Enable Private Variables
 // =============================
 
-$valign-enable: true !default;
+$_valign-enable: true !default;
 
 // =============================
-// Vertical Align Utility Helper Attributes
+// Core Vertical Align Utility Helper Attributes
 // =============================
 
-@if ($valign-enable) {
-	.valign {
-		display: inline-block  !important;
-		vertical-align: middle !important;
+@if ($_valign-enable) {
+	.valign,
+	%valign {
+  	display: inline-block  !important;
+    vertical-align: middle !important;
 	}
 }

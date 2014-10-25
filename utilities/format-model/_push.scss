@@ -2,19 +2,21 @@
 // Enable Private Variables
 // =============================
 
-$push-enable: false !default;
+$_push-enable: false !default;
 
 // =============================
-// Viewport Position Left Utility Helper Attributes
+// Core Viewport Position Left Utility Helper Attributes
 // =============================
 
-// Viewport Position Left Utility Helper Attributes are generated via the below mixin to namespace attributes 
+//
+// Core Viewport Position Left Utility Helper Attributes are generated via the below mixin to create attributes/classes
 // for certain viewports.
 // The advantage to this, is it allows position a certain element specifically for a breakpoint which you have defined.
-// Example Use - data-desk="desk-push-4-12" data-lap="lap-push-4-6".
+// Example Use - data-desk="push-4-12" data-lap="push-4-6".
+//
+// Note - Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports.
+//
 
-// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports.
-
-@if ($push-enable) {
+@if ($_push-enable) {
 	@include generate-grid-percentage-batch($property: 'left', $namespace: 'push');
 }

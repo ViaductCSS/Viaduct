@@ -8,48 +8,57 @@ $media-pattern-enable: true !default;
 // Core Media Pattern Styling
 // =============================
 
+//
 // Core Media Pattern will display two content elements side by side.
-// Find more information regarding this pattern here 
-// http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/ 
+// Find more information regarding this pattern here
+// http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
 // Note - This pattern usually consists of an image and textual content, but isn't restricted.
-
 //
 // Media Pattern Default.
-// 
+// Note - Reversed Version is the diagram below but the elements are in opposite positions.
+//
 //    Media Sidebar             Media Body
 //
-//    ~ ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+//    ~ ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 //    ~           ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 //    ~           ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-//    ~           ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~    
+//    ~           ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 //    ~ ~ ~ ~ ~ ~ ~    ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 //
 
 @if ($media-pattern-enable) {
+
     .media {
-        @extend .clearfix;
-        display: block;
+      @extend %clearfix;
+
+      // .media__body
+
+      &__body {
+          overflow: hidden;
+      }
+
+      //.media__sidebar
+
+      &__sidebar {
+          @extend %float-left;
+      }
+
+      // .media__sidebar--rev
+
+      &__sidebar--rev {
+          @extend %float-right;
+      }
+
+      &__sidebar img,
+      &__sidebar--rev img {
+          display: block;
+      }
+
+      &__body,
+      &__body > :last-child {
+          margin-bottom: 0;
+      }
+
     }
 
-        .media__sidebar {
-            @extend .float-left;
-        }
-
-        .media__sidebar--rev {
-            @extend .float-right;
-        }
-
-            .media__sidebar img,
-            .media__sidebar--rev img {
-                display: block;
-            }
-
-        .media__body {
-            overflow: hidden;
-        }
-
-            .media__body,
-            .media__body > :last-child {
-                margin-bottom: 0;
-            }
 }

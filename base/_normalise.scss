@@ -2,7 +2,7 @@
 
 //
 // 1. Prevent iOS text size adjust after orientation change, without disabling
-//    user zoom.
+//     user zoom.
 //
 
 html {
@@ -58,7 +58,7 @@ video {
 
 //
 // Prevent modern browsers from displaying `audio` without controls.
-//   Remove excess height in iOS 5 devices.
+// Remove excess height in iOS 5 devices.
 //
 
 audio:not([controls]) {
@@ -174,7 +174,7 @@ sub {
 }
 
 // =============================
-// Embedded Content 
+// Embedded Content
 // =============================
 
 //
@@ -379,7 +379,7 @@ input[type="search"]::-webkit-search-decoration {
 //
 
 fieldset {
-  border: 1px solid #c0c0c0;
+  border: 0 !important;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -391,7 +391,7 @@ fieldset {
 
 legend {
   border: 0;  // 1
-  padding: 0; // 2 
+  padding: 0; // 2
 }
 
 //

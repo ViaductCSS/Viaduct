@@ -2,39 +2,51 @@
 // Enable Private Variables
 // =============================
 
-$floats-enable:          true !default;
-$viewport-floats-enable: true !default;
+$_floats-enable:          true !default;
+$_viewport-floats-enable: true !default;
 
 // =============================
-// Float Utility Helper Classes
+// Core Float Utility Helper Classes
 // =============================
 
-// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports. 
+// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports.
 
-@if ($floats-enable) {
-	.float-left  { float: left;  }
-	.float-right { float: right; }
-	.float-none  { float: none;  }
+@if ($_floats-enable) {
+	.float-left,
+	%float-left  {
+		float: left  !important
+	}
+	.float-right,
+	%float-right {
+		float: right !important
+	}
+	.float-none,
+	%float-none  {
+		float: none  !important
+	}
 }
 
 // =============================
-// Float Utility Helper Attributes
+// Core Viewport Float Utility Helper Attributes
 // =============================
 
-// Viewport Margin Utility Helper Attributes are generated via the below loop to create attributes for certain viewports.
+//
+// Core Viewport Margin Utility Helper Attributes are generated via the below loop to create attributes for certain viewports.
 // The advantage to this, is it allows floats to be added to a certain element specifically for a breakpoint which you have defined.
 // Example Use - data-desk="float-left" data-lap="float-none".
+//
 
-@if ($viewport-floats-enable) {
+@if ($_viewport-floats-enable) {
 	@each $viewport, $breakpoint in $viewport-values {
 
-	  	// Attributes only apply once certain breakpoint is triggered.
-	  	
-		@include media-query(nth($breakpoint, 1)) {
-	    	[data-#{$viewport}="float-left"]  { float: left  !important; }
-	    	[data-#{$viewport}="float-right"] { float: right !important; }
-	    	[data-#{$viewport}="float-none"]  { float: none  !important; }
-	  	}
+	  // Attributes only apply once certain breakpoint is triggered.
+
+		@include media-query($from: nth($breakpoint, 1),
+		                     $to:   nth($breakpoint, 2)) {
+	    [data-#{$viewport}~="float-left"]  { float: left  !important }
+	    [data-#{$viewport}~="float-right"] { float: right !important }
+	    [data-#{$viewport}~="float-none"]  { float: none  !important }
+	  }
 
 	}
 }

@@ -2,38 +2,43 @@
 // Enable Private Variables
 // =============================
 
-$position-enable:          true !default;
-$viewport-position-enable: true !default;
+$_position-enable:          true !default;
+$_viewport-position-enable: true !default;
 
 // =============================
-// Position Utility Helper Classes
+// Core Position Utility Helper Classes
 // =============================
 
-// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports. 
+//
+// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports.
+//
 
-@if ($position-enable) {
-	.position-static   { position: static   }
-	.position-relative { position: relative }
-	.position-absolute { position: absolute }
+@if ($_position-enable) {
+	.position-static,   %position-static   { position: static   !important }
+	.position-relative, %position-relative { position: relative !important }
+	.position-absolute, %position-absolute { position: absolute !important }
 }
 
 // =============================
-// Viewport Position Utility Helper Attributes
+// Core Viewport Position Utility Helper Attributes
 // =============================
 
-// Viewport Position Utility Helper Attributes are generated via the below loop to create attributes for certain viewports.
+//
+// Core Viewport Position Utility Helper Attributes are generated via the below loop to create attributes for certain viewports.
 // The advantage to this, is it allows position to be added to a certain element specifically for a breakpoint which you have defined.
 // Example Use - data-desk="position-absolute" data-lap="position-static".
+//
 
-@if ($viewport-position-enable) {
+@if ($_viewport-position-enable) {
 	@each $viewport, $breakpoint in $viewport-values {
 
 		// Attributes only apply once certain breakpoint is triggered.
-		
-		@include media-query(nth($breakpoint, 1)) {
-			[data-#{$viewport}="position-static"]   { position: static   !important; }
-			[data-#{$viewport}="position-relative"] { position: relative !important; }
-			[data-#{$viewport}="position-absolute"] { position: absolute !important; }
+
+		@include media-query($from: nth($breakpoint, 1),
+		                     $to:   nth($breakpoint, 2)) {
+			[data-#{$viewport}~="position-static"]   { position: static   !important }
+			[data-#{$viewport}~="position-relative"] { position: relative !important }
+			[data-#{$viewport}~="position-absolute"] { position: absolute !important }
 		}
 
 	}

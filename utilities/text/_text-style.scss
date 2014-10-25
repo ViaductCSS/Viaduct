@@ -2,35 +2,32 @@
 // Enable Private Variables
 // =============================
 
-$text-weight-enable:    true !default;
-$text-style-enable:     true !default;
-$text-transform-enable: true !default;
+$_text-weight-enable:    true !default;
+$_text-style-enable:     true !default;
+$_text-transform-enable: true !default;
 
 // =============================
-// Text Weight Utility Helper Classes
+// Core Text Weight Utility Helper Classes
 // =============================
 
-@if ($text-weight-enable) {
-	.text-bold   { font-weight: bold   !important; }
-	.text-normal { font-weight: normal !important; }
+@if ($_text-weight-enable) {
+	.text-bold,   %text-bold   { font-weight: bold   !important }
+	.text-normal, %text-normal { font-weight: normal !important }
 }
 
 // =============================
-// Text Style Utility Helper Classes
+// Core Text Style Utility Helper Classes
 // =============================
 
-@if ($text-style-enable) {
-	.text-italic { font-style: italic !important; }
+@if ($_text-style-enable) {
+	.text-italic, %text-italic { font-style: italic !important }
 }
 
 // =============================
-// Text Transform Utility Helper Classes
+// Core Text Transform Utility Helper Classes
 // =============================
 
-@if ($text-transform-enable) {
-	.text-caps      { text-transform: uppercase  !important;  }
-	.text-smallcaps { font-variant:   small-caps !important;  }
+@if ($_text-transform-enable) {
+	.text-caps,      %text-caps      { text-transform: uppercase  !important  }
+	.text-smallcaps, %text-smallcaps { font-variant:   small-caps !important  }
 }
-
-
-

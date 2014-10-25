@@ -2,66 +2,92 @@
 // Enable Private Variables
 // =============================
 
-$visibility-enable:          true !default;
-$viewport-visibility-enable: true !default;
+$_visibility-enable:          true !default;
+$_viewport-visibility-enable: true !default;
 
 // =============================
-// Visibility Utility Helper Classes
+// Core Visibility Utility Helper Classes
 // =============================
 
-// Un-namespaced Classes are to be used globally when an elements visibility is consistant across all viewports. 
+// Un-namespaced Classes are to be used globally when an elements visibility is consistant across all viewports.
 
-@if ($visibility-enable) {
-  .is-hidden {
-      display: none !important;
+@if ($_visibility-enable) {
+  .is-hidden,
+  %is-hidden {
+      display: none      !important;
       visibility: hidden !important;
   }
 
-  .is-hidden-visually {
-      position: absolute !important;
-      overflow: hidden !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      border: 0 !important;
+  //
+  // Accessibly hide content:
+  // http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+  //
+
+  .is-hidden-visually,
+  %is-hidden-visually {
+      position: absolute             !important;
+      overflow: hidden               !important;
+      width: 1px                     !important;
+      height: 1px                    !important;
       clip: rect(1px, 1px, 1px, 1px) !important;
   }
+
+  .is-visible,
+  %is-visible {
+      display: block      !important;
+      visibility: visible !important;
+      position: static    !important;
+      width: auto         !important;
+      height: auto        !important;  
+  }
+
 }
 
 // =============================
 // Visibility Utility Helper Attributes
 // =============================
 
-@if ($viewport-visibility-enable) {
+@if ($_viewport-visibility-enable) {
   @each $viewport, $breakpoint in $viewport-values {
 
     // Attributes only apply once certain breakpoint is triggered.
 
-    @include media-query(nth($breakpoint, 1)) {
+    @include media-query($from: nth($breakpoint, 1),
+                         $to:   nth($breakpoint, 2)) {
 
-    	// Is Hidden Utility Helper Attribute removes elements completely from document, making them not 
+      //
+    	// Is Hidden Utility Helper Attribute removes elements completely from document, making them not
     	// visible to screen readers.
-  	  // Example Use - data-desk="desk-is-hidden".
+      // Example Use - data-desk="is-hidden".
+      //
 
-    	[data-#{$viewport}="is-hidden"] {
-    	    display: none !important;
+    	[data-#{$viewport}~="is-hidden"] {
+    	    display: none      !important;
     	    visibility: hidden !important;
     	}
 
-    	// Is Hidden Utility Helper Attribute removes elements from the flow of the document, but they are still 
+      //
+    	// Is Hidden Utility Helper Attribute removes elements from the flow of the document, but they are still
     	// visible to screen readers.
     	// Example - data-desk="desk-is-hidden".
+      //
 
-    	[data-#{$viewport}="is-hidden-visually"] {
-    	    position: absolute !important;
-    	    overflow: hidden !important;
-    	    width: 1px !important;
-    	    height: 1px !important;
-    	    padding: 0 !important;
-    	    border: 0 !important;
+    	[data-#{$viewport}~="is-hidden-visually"] {
+    	    position: absolute             !important;
+    	    overflow: hidden               !important;
+    	    width: 1px                     !important;
+    	    height: 1px                    !important;
     	    clip: rect(1px, 1px, 1px, 1px) !important;
     	}
-  	
+
+      [data-#{$viewport}~="is-visible"] {
+          display: block      !important;
+          visibility: visible !important;
+          position: static    !important;
+          width: auto         !important;
+          height: auto        !important;
+      }
+
     }
 
   }

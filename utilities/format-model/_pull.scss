@@ -2,19 +2,21 @@
 // Enable Private Variables
 // =============================
 
-$pull-enable: false !default;
+$_pull-enable: false !default;
 
 // =============================
-// Viewport Position Right Utility Helper Attributes
+// Core Viewport Position Right Utility Helper Attributes
 // =============================
 
-// Viewport Position Right Utility Helper Attributes are generated via the below mixin to namespace attributes
+//
+// Core Viewport Position Right Utility Helper Attributes are generated via the below mixin to create attributes/classes
 // for certain viewports.
 // The advantage to this, is it allows position a certain element specifically for a breakpoint which you have defined.
 // Example Use - data-desk="pull-4/12" data-lap="pull-4/6".
-
+//
 // Note - Un-namespaced Classes are also generated and are to be used globally when an elements spacing is consistant across all viewports.
+//
 
-@if ($pull-enable) {
+@if ($_pull-enable) {
 	@include generate-grid-percentage-batch($property: 'right', $namespace: 'pull');
 }

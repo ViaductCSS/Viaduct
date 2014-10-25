@@ -1,7 +1,11 @@
+// =============================
+// Enable Private Variables
+// =============================
+
 $_global-box-sizing: $global-box-sizing;
 
 // =============================
-// Base Reset Styling
+// Core Base Reset Styling
 // =============================
 
 body,
@@ -15,8 +19,10 @@ hr {
     padding: 0;
 }
 
+//
 // If Global Box Sizing Boolean is set to true, add box-sizing to all elements.
 // Note - For alternative approach, view grids partial.
+//
 
 @if $_global-box-sizing == true {
 	* {
@@ -29,21 +35,19 @@ hr {
 }
 
 //
-// 1. Set the default `font-size` and `line-height` for the entire project,
-//    sourced from our default variables. The `font-size` is calculated to exist
-//    in ems, the `line-height` is calculated to exist unitlessly.
+// 1. Set the default `font-size` for the entire project,
+//    sourced from our default variables.
 // 2. Force scrollbars to always be visible to prevent awkward `jumps` when
 //    navigating between pages that do/do not have enough content to produce
 //    scrollbars naturally.
 // 3. Ensure the page always fills at least the entire height of the viewport.
-//  
+//
 
 html {
     background-color: $base-background-color;
     color: $base-text-color;
     font-family: $font-family-alpha;
-    font-size: $base-font-size;     // 1
-    line-height: $base-line-height; // 1
-    overflow-y: scroll;             // 2
-    min-height: 100%;               // 3
+    font-size: to-pixel($base-font-size); // 1
+    overflow-y: scroll;                   // 2
+    min-height: 100%;                     // 3
 }

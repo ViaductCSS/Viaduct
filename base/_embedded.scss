@@ -1,0 +1,12 @@
+// =============================
+// Core Base Image Styling
+// =============================
+
+img {
+    max-width: 100%; // Add fluiditity to imagery for responsive purposes.
+}
+
+img[width],
+img[height] {
+    max-width: none; // Remove max-width property if certain imagery contain height & width attribute values.
+}

@@ -2,6 +2,7 @@
 // Core Percentage Calculation Function
 // =============================
 
+//
 // Calculate a percentage value using the formula: target / context.
 // Parameter Description:
 //
@@ -14,85 +15,84 @@
 //
 
 @function calc-percent($target, $context) {
-    @return $target / $context * 100%;
+    @return ($target / $context) * 100%;
 }
 
 // =============================
 // Core EM Unit Calculation Function
 // =============================
 
+//
 // Calculate a EM value using the formula: target / context.
 // Your context is the font-size of the parent element.
 // If you set the value on a textual element, your context is the element font-size.
-
+//
 // Parameter Description:
 //
 // $target  - The value (in pixels) of the elements property you are setting the EM value for.
-// $context - The value (in pixels) of the parent elements property.
+// $context - The value (in pixels) of the parent elements property. Defaults to $base-font-size.
 //
-
 // Example Use:
 //
 // margin-right: calc-em(20, 16);
 //
 
 @function calc-em($target, $context: $base-font-size) {
-    @return $target / $context * 1em;
+    @return ($target / $context) * 1em;
 }
 
 // =============================
 // Core REM Unit Calculation Function
 // =============================
 
+//
 // Calculate a REM value using the formula: target / context.
 // Your context is the font-size of the root element.
-// Note - This is required for font-sizing mixin.
+// Note - This is required for rem-sizing mixin.
+//
+// Parameter Description:
+//
+// $target  - The value (in pixels) of the elements property you are setting the EM value for.
+// $context - The value (in pixels) of the root elements font-size.
+//
+// Example Use:
+//
+// font-size: calc-rem(20, 16);
+//
 
 @function calc-rem($target, $context: $base-font-size) {
-    @return $target / $context * 1rem;
+    @return ($target / $context) * 1rem;
 }
 
 // =============================
-// Core Map Value Checking Function
+// Core To Pixel Conversion Function
 // =============================
 
-// Checks whether the value of $needle is present within the map
-// assigned to $haystack. Returns true if found, false if otherwise.
-
-// Parameter Description:
 //
-// $needle   - The value you are looking to be present within $haystack.
-// $haystack - A list of values.
+// Convert a number into a pixel value.
+// Note - This is required for converting the base-font-size into
+// a pixel value for the <html> element.
 //
-
 // Example Use:
 //
-// in-map(4, (1, 9, 4)) // returns true
-// in-map(4, (1, 2, 3)) // returns false
+// to-pixel(16);
 //
 
-@function in-map($needle, $haystack) {
-
-    @each $item in $haystack {
-        @if $item == $needle {
-            @return true;
-        }
-    }
-
-    @return false;
+@function to-pixel($number) {
+  @return $number + 'px';
 }
 
 // =============================
 // Core Map Count Function
 // =============================
 
+//
 // Counts the number of items within a given map.
-
+//
 // Parameter Description:
 //
 // $map - A list of values which the function counts upon.
 //
-
 // Example Use:
 //
 // map-count((1, 9, 4))          // returns 3
@@ -103,38 +103,68 @@
     $count: 0;
 
     @each $item in $map {
-        $count: $count+1;
+        $count: $count + 1;
     }
 
-    @return $count
+    @return $count;
 }
 
 // =============================
 // Core To Number Function
 // =============================
 
+//
 // Converts a string into a number.
 // Note - Only works from 0-9.
-
+//
 // Parameter Description:
 //
 // $string - A String to be converted into a number.
 //
-
 // Example Use:
 //
 // to-number("3") // returns 3
 //
 
 @function to-number($string) {
-    $strings: ('1', '2', '3', '4', '5', '6', '7', '8', '9');
-    $numbers: (1, 2, 3, 4, 5, 6, 7, 8, 9);
+    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+    $numbers:  0   1   2   3   4   5   6   7   8   9 ;
 
-    $number: 0;
+    $result: 0;
 
-    @for $i from 1 through map-count($strings) {
-        @if nth($strings, $i) == $string {
-            @return $i;
-        }
+    @for $i from 1 through map-count($string) {
+      $character: str-slice($string, $i, $i);
+      $index: index($strings, $character);
+
+      @if not $index {
+        @warn "Unknown character `#{$character}`.";
+        @return false;
+      }
+
+      $number: nth($numbers, $index);
+      $result: $result * 10 + $number;
     }
+
+    @return $result;
+
+}
+
+// =============================
+// Core To String Function
+// =============================
+
+//
+// Converts a value into a string.
+//
+// Parameter Description:
+//
+// $value - A Value to be converted to a string. Works with anything including lists and maps.
+//
+// Example Use:
+//
+// to-string(16px) // returns "16px"
+//
+
+@function to-string($value) {
+  @return inspect($value);
 }

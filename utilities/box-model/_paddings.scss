@@ -2,28 +2,33 @@
 // Enable Private Variables
 // =============================
 
-$paddings-enable:          true !default;
-$viewport-paddings-enable: true !default;
+$_paddings-enable:          true !default;
+$_viewport-paddings-enable: true !default;
 
 // =============================
-// Global Padding Utility Helper Classes
+// Core Padding Utility Helper Classes
 // =============================
 
-// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports. 
+//
+// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports.
 // Example Use - class="pad-r-2x".
+//
 
-@if ($paddings-enable) {
-	@include generate-spacing("padding", $global-spacing-values);
+@if ($_paddings-enable) {
+	@include generate-spacing-batch("padding");
 }
 
 // =============================
-// Viewport Padding Utility Helper Attributes
+// Core Viewport Padding Utility Helper Attributes
 // =============================
 
-// Viewport Padding Utility Helper Attributes are generated via the below mixin to create attributes for certain viewports.
+//
+// Core Viewport Padding Utility Helper Attributes are generated via the below mixin to create attributes for certain viewports.
 // The advantage to this, is it allows padding to be added to a certain element specifically for a breakpoint which you have defined.
 // Example Use - data-desk="pad-r-2x" data-palm="pad-r-0".
+//
 
+//
 // Attribute Name Key
 // -t- = Top
 // -b- = Bottom
@@ -31,13 +36,16 @@ $viewport-paddings-enable: true !default;
 // -r- = Right
 // -e- = Ends  (Top & Bottom)
 // -s- = Sides (Left & Right)
+//
 
-@if ($viewport-paddings-enable) {
+@if ($_viewport-paddings-enable) {
 	@each $viewport, $viewport-val in $viewport-values {
 
-	    // Attributes only apply once certain breakpoint is triggered.
-		@include media-query(nth($viewport-val, 1)) {
-			@include generate-spacing("padding", $global-spacing-values, $viewport);
+		// Attributes only apply once certain breakpoint is triggered.
+
+		@include media-query($from: nth($viewport-val, 1),
+		                     $to:   nth($viewport-val, 2)) {
+			@include generate-spacing-batch("padding", $namespace: $viewport);
 		}
 
 	}
