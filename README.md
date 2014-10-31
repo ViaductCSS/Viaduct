@@ -6,7 +6,7 @@ The framework has been written with both OOCSS and BEM in mind, and particularly
 
 Viaduct Core CSS Framework is written with the mobile first strategy in mind, and is completely responsive by default. It uses data attributes and name-spacing to apply styling to a specific set of breakpoints, which are completely customisable and allow for applications to scale very easily.
 
-``I would like to say a special thanks to both [Harry Roberts](https://github.com/csswizardry) & [Nicolas Gallagher](https://github.com/necolas) for their work across multiple projects including [Inuit](https://github.com/inuitcss), [Suit](https://github.com/suitcss/suit) and [Normalize](https://github.com/necolas/normalize.css) to name a few. Viaduct is heavily influenced and uses a lot of techniques specified in these great frameworks and libraries``
+*I would like to say a special thanks to both [Harry Roberts](https://github.com/csswizardry) & [Nicolas Gallagher](https://github.com/necolas) for their work across multiple projects including [Inuit](https://github.com/inuitcss), [Suit](https://github.com/suitcss/suit) and [Normalize](https://github.com/necolas/normalize.css) to name a few. Viaduct is heavily influenced and uses a lot of techniques specified in these great frameworks and libraries*
 
 ### Installation
 
