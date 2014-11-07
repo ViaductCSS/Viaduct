@@ -12,9 +12,18 @@ $_viewport-text-alignment-enable: true !default;
 // Un-namespaced Classes are to be used globally when an elements alignment is consistant across all viewports.
 
 @if ($_text-alignment-enable) {
-	.text-left,   %text-left   { text-align: left   !important }
-	.text-right,  %text-right  { text-align: right  !important }
-	.text-center, %text-center { text-align: center !important }
+	.text-left,
+	%text-left   {
+		text-align: left   !important
+	}
+	.text-right,
+	%text-right  {
+		text-align: right  !important
+	}
+	.text-center,
+	%text-center {
+		text-align: center !important
+	}
 }
 
 // =============================

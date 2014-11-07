@@ -110,6 +110,9 @@
         } @else if $operator == '/' {
           $amount: str-slice($unit, -1, -1);
           @include rem-sizing(#{$property}-#{$position}, $base-spacing-unit / to-number($amount));
+        } @else {
+          $amount: str-slice($unit, 1, 1);
+          #{$property}-#{$position}: to-number($amount);
         }
       }
     } @else {
