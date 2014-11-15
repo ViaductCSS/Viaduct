@@ -11,13 +11,13 @@
 @import 'base/all';
 
 // =============================
-// Core Utility Partial Import
-// =============================
-
-@import 'utilities/all';
-
-// =============================
 // Core Pattern Partial Import
 // =============================
 
 @import 'patterns/all';
+
+// =============================
+// Core Utility Partial Import
+// =============================
+
+@import 'utilities/all';

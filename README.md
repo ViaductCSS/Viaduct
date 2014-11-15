@@ -30,7 +30,7 @@ When your packages are stored in the directory of your choice, it is a case of u
 
 ## Why use Viaduct?
 
-Viaduct’s code is **not** the main focus of the framework. The main focus of building Viaduct is to create a project structure which is maintainable and understandable to developers of any level, as well to make working on RWD projects easier via data attributes.
+Viaduct’s code is **not** the main focus of the framework. The main focus of building Viaduct is to create a project structure and architecture which is maintainable, understandable to developers of any level and highly scalable, as well to make working on RWD projects easier via data attributes.
 
 In a world where web standards is moving so quickly and technologies are allowing developers to produce things on the client which people didn’t think was possible, we all seem to have forgot about project structure.
 
