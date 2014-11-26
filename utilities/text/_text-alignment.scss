@@ -12,9 +12,18 @@ $_viewport-text-alignment-enable: true !default;
 // Un-namespaced Classes are to be used globally when an elements alignment is consistant across all viewports.
 
 @if ($_text-alignment-enable) {
-	.text-left,   %text-left   { text-align: left   !important }
-	.text-right,  %text-right  { text-align: right  !important }
-	.text-center, %text-center { text-align: center !important }
+	.text-left,
+	%text-left   {
+		text-align: left   !important
+	}
+	.text-right,
+	%text-right  {
+		text-align: right  !important
+	}
+	.text-center,
+	%text-center {
+		text-align: center !important
+	}
 }
 
 // =============================
@@ -33,8 +42,7 @@ $_viewport-text-alignment-enable: true !default;
 
 		// Attributes only apply once certain breakpoint is triggered.
 
-		@include media-query($from: nth($breakpoint, 1),
-		                     $to:   nth($breakpoint, 2)) {
+		@include media-query($to: nth($breakpoint, 2)) {
 			[data-#{$viewport}~="text-left"]   { text-align: left   !important }
 			[data-#{$viewport}~="text-right"]  { text-align: right  !important }
 			[data-#{$viewport}~="text-center"] { text-align: center !important }

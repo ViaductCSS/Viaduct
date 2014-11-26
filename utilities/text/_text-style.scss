@@ -11,8 +11,14 @@ $_text-transform-enable: true !default;
 // =============================
 
 @if ($_text-weight-enable) {
-	.text-bold,   %text-bold   { font-weight: bold   !important }
-	.text-normal, %text-normal { font-weight: normal !important }
+	.text-bold,
+	%text-bold   {
+		font-weight: bold   !important
+	}
+	.text-normal,
+	%text-normal {
+		font-weight: normal !important
+	}
 }
 
 // =============================
@@ -20,7 +26,10 @@ $_text-transform-enable: true !default;
 // =============================
 
 @if ($_text-style-enable) {
-	.text-italic, %text-italic { font-style: italic !important }
+	.text-italic,
+	%text-italic {
+		font-style: italic !important
+	}
 }
 
 // =============================
@@ -28,6 +37,12 @@ $_text-transform-enable: true !default;
 // =============================
 
 @if ($_text-transform-enable) {
-	.text-caps,      %text-caps      { text-transform: uppercase  !important  }
-	.text-smallcaps, %text-smallcaps { font-variant:   small-caps !important  }
+	.text-caps,
+	%text-caps      {
+		text-transform: uppercase  !important
+	}
+	.text-smallcaps,
+	%text-smallcaps {
+		font-variant:   small-caps !important
+	}
 }

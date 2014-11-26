@@ -14,7 +14,7 @@ $_clearfix-enable: true !default;
 
 	  &:before,
 	  &:after {
-	    content: " ";
+	    content: "";
 	    display: table;
 	  }
 

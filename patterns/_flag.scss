@@ -71,7 +71,7 @@ $flag-pattern-reversed-enable: true !default;
 
       &__sidebar,
       &__body {
-          vertical-align: middle;
+        @extend %valign;
       }
 
       // .flag__sidebar--bottom

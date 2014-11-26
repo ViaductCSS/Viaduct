@@ -1,7 +1,7 @@
 .DS_Store
 .sass-cache
-public
-node_modules
-main.scss
 gulpfile.js
+node_modules
 package.json
+public
+main.scss

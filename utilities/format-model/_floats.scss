@@ -41,8 +41,7 @@ $_viewport-floats-enable: true !default;
 
 	  // Attributes only apply once certain breakpoint is triggered.
 
-		@include media-query($from: nth($breakpoint, 1),
-		                     $to:   nth($breakpoint, 2)) {
+		@include media-query($to: nth($breakpoint, 2)) {
 	    [data-#{$viewport}~="float-left"]  { float: left  !important }
 	    [data-#{$viewport}~="float-right"] { float: right !important }
 	    [data-#{$viewport}~="float-none"]  { float: none  !important }
