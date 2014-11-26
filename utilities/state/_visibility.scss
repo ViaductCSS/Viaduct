@@ -38,7 +38,7 @@ $_viewport-visibility-enable: true !default;
       visibility: visible !important;
       position: static    !important;
       width: auto         !important;
-      height: auto        !important;  
+      height: auto        !important;
   }
 
 }
@@ -52,8 +52,7 @@ $_viewport-visibility-enable: true !default;
 
     // Attributes only apply once certain breakpoint is triggered.
 
-    @include media-query($from: nth($breakpoint, 1),
-                         $to:   nth($breakpoint, 2)) {
+    @include media-query($to: nth($breakpoint, 2)) {
 
       //
     	// Is Hidden Utility Helper Attribute removes elements completely from document, making them not

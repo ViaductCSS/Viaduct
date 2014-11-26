@@ -5,16 +5,16 @@
 $_push-enable: false !default;
 
 // =============================
-// Core Viewport Position Left Utility Helper Attributes
+// Core Viewport Push Utility Helper Attributes
 // =============================
 
 //
-// Core Viewport Position Left Utility Helper Attributes are generated via the below mixin to create attributes/classes
+// Core Viewport Push Utility Helper Attributes are generated via the below mixin to create attributes/classes
 // for certain viewports.
 // The advantage to this, is it allows position a certain element specifically for a breakpoint which you have defined.
 // Example Use - data-desk="push-4-12" data-lap="push-4-6".
 //
-// Note - Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports.
+// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports.
 //
 
 @if ($_push-enable) {

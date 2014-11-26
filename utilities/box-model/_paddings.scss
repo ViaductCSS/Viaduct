@@ -43,8 +43,7 @@ $_viewport-paddings-enable: true !default;
 
 		// Attributes only apply once certain breakpoint is triggered.
 
-		@include media-query($from: nth($viewport-val, 1),
-		                     $to:   nth($viewport-val, 2)) {
+		@include media-query($to: nth($viewport-val, 2)) {
 			@include generate-spacing-batch("padding", $namespace: $viewport);
 		}
 

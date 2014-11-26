@@ -43,8 +43,7 @@ $_viewport-position-enable: true !default;
 
 		// Attributes only apply once certain breakpoint is triggered.
 
-		@include media-query($from: nth($breakpoint, 1),
-		                     $to:   nth($breakpoint, 2)) {
+		@include media-query($to: nth($breakpoint, 2)) {
 			[data-#{$viewport}~="position-static"]   { position: static   !important }
 			[data-#{$viewport}~="position-relative"] { position: relative !important }
 			[data-#{$viewport}~="position-absolute"] { position: absolute !important }
