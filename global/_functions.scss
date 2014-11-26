@@ -15,7 +15,7 @@
 //
 
 @function calc-percent($target, $context) {
-    @return ($target / $context) * 100%;
+  @return ($target / $context) * 100%;
 }
 
 // =============================
@@ -35,10 +35,25 @@
 // Example Use:
 //
 // margin-right: calc-em(20, 16);
+// margin:       calc-em(20 20 10, 16); // Can take multiple values in the first parameter.
 //
 
-@function calc-em($target, $context: $base-font-size) {
-    @return ($target / $context) * 1em;
+@function calc-em($values, $context: $base-font-size) {
+  $em: ();
+
+  @each $value in $values {
+
+    @if $value == 0 or $value == auto {
+      $em: append($em, $value);
+    }
+    @else {
+      $val: $value;
+      $em: append($em, ($val / $context * 1em));
+    }
+
+  }
+
+  @return $em;
 }
 
 // =============================
@@ -52,16 +67,31 @@
 //
 // Parameter Description:
 //
-// $target  - The value (in pixels) of the elements property you are setting the EM value for.
-// $context - The value (in pixels) of the root elements font-size.
+// $values  - The value/s (in pixels) of the elements property you are setting the REM value for.
+// $context - The value (in pixels) of the root elements font-size. Defaults to $base-font-size.
 //
 // Example Use:
 //
 // font-size: calc-rem(20, 16);
+// padding:   calc-rem(20 20, 16); // Can take multiple values in the first parameter.
 //
 
-@function calc-rem($target, $context: $base-font-size) {
-    @return ($target / $context) * 1rem;
+@function calc-rem($values, $context: $base-font-size) {
+  $rem: ();
+
+  @each $value in $values {
+
+    @if $value == 0 or $value == auto {
+      $rem: append($rem, $value);
+    }
+    @else {
+      $val: $value;
+      $rem: append($rem, ($val / $context + rem));
+    }
+
+  }
+
+  @return $rem;
 }
 
 // =============================
@@ -78,8 +108,14 @@
 // to-pixel(16);
 //
 
-@function to-pixel($number) {
-  @return $number + 'px';
+@function to-pixel($numbers) {
+  $px: ();
+
+  @each $number in $numbers {
+    $px: append($px, $number + px);
+  }
+
+  @return $px;
 }
 
 // =============================
@@ -100,13 +136,13 @@
 //
 
 @function map-count($map) {
-    $count: 0;
+  $count: 0;
 
-    @each $item in $map {
-        $count: $count + 1;
-    }
+  @each $item in $map {
+      $count: $count + 1;
+  }
 
-    @return $count;
+  @return $count;
 }
 
 // =============================
@@ -127,26 +163,25 @@
 //
 
 @function to-number($string) {
-    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
-    $numbers:  0   1   2   3   4   5   6   7   8   9 ;
+  $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+  $numbers:  0   1   2   3   4   5   6   7   8   9 ;
 
-    $result: 0;
+  $result: 0;
 
-    @for $i from 1 through map-count($string) {
-      $character: str-slice($string, $i, $i);
-      $index: index($strings, $character);
+  @for $i from 1 through map-count($string) {
+    $character: str-slice($string, $i, $i);
+    $index: index($strings, $character);
 
-      @if not $index {
-        @warn "Unknown character `#{$character}`.";
-        @return false;
-      }
-
-      $number: nth($numbers, $index);
-      $result: $result * 10 + $number;
+    @if not $index {
+      @warn "Unknown character `#{$character}`.";
+      @return false;
     }
 
-    @return $result;
+    $number: nth($numbers, $index);
+    $result: $result * 10 + $number;
+  }
 
+  @return $result;
 }
 
 // =============================
