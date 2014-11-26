@@ -1,3 +1,9 @@
+## 0.1.9
+- Change ```_core.scss``` to ```_viaduct.scss```
+- Fix issue to allow developers to use zero based spacing utilities. ```pad-0``` and ```mar-0``` should now work.
+- Updated ```calc-em``` and ```calc-rem``` functions, as well as ```rem-sizing``` mixin to be able to take multiple values in their ```$values``` argument.
+- Removed ```$from``` param from utilities media queries, to resolve issue where a single data attribute value will cascade down to all smaller viewports. Example - ```data-lap="position-relative"``` will result in just a max-width conditional being set so ```position: relative``` will apply to all viewports within the bounds of ```data-lap``` and ```data-palm```.
+
 ## 0.1.8
 Removed 100% width from ```grid__item```. Recommendation is to use the ```1x``` utility.
 
@@ -17,7 +23,7 @@ Continue with documentation. Start to add an example of how to use the architect
 - Removed unnecessary ```!important``` from spacing generation mixins.
 - Addition of utility classes as placeholder elements.
 - Addition of ```is-visible``` class and placeholder within visibility partial.
-- Removal of ```vendor``` directory and all containing partials. 
+- Removal of ```vendor``` directory and all containing partials.
 
 ## 0.0.4
 Bug fix to remove special characters which were failing build for services internally at Clicksco.
