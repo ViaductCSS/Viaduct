@@ -1,0 +1,40 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_text-weight-enable:    true !default;
+$_text-style-enable:     true !default;
+$_text-transform-enable: true !default;
+
+// =============================
+// Core Text Weight Utility Helper Classes
+// =============================
+
+@if ($_text-weight-enable) {
+	.text-bold   {
+		@include font-weight(bold, true);
+	}
+	.text-normal {
+		@include font-weight(normal, true);
+	}
+}
+
+// =============================
+// Core Text Style Utility Helper Classes
+// =============================
+
+@if ($_text-style-enable) {
+	.text-italic {
+		@include font-style(italic, true);
+	}
+}
+
+// =============================
+// Core Text Transform Utility Helper Classes
+// =============================
+
+@if ($_text-transform-enable) {
+	.text-caps {
+		@include text-transform(uppercase, true);
+	}
+}

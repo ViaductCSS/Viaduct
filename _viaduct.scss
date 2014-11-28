@@ -1,4 +1,10 @@
 // =============================
+// Core Utility Mixin Partial Import
+// =============================
+
+@import 'utilities/all.mixins';
+
+// =============================
 // Core Global Partial Import
 // =============================
 
@@ -17,7 +23,7 @@
 @import 'patterns/all';
 
 // =============================
-// Core Utility Partial Import
+// Core Utility Class Partial Import
 // =============================
 
-@import 'utilities/all';
+@import 'utilities/all.classes';

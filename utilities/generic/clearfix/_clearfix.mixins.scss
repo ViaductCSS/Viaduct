@@ -1,0 +1,23 @@
+// =============================
+// Core Utilities Generic Clearfix Mixin
+// =============================
+
+//
+// Adds to the targeted element the necessary properties to clear float.
+//
+// Example Use:
+//
+// @include clearfix();
+//
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}

@@ -1,0 +1,51 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_paddings-enable:          true !default;
+$_viewport-paddings-enable: true !default;
+
+// =============================
+// Core Padding Utility Helper Classes
+// =============================
+
+//
+// Un-namespaced Classes are to be used globally when an elements spacing is consistant across all viewports.
+// Example Use - class="pad-r-2x".
+//
+
+@if ($_paddings-enable) {
+	@include generate-spacing-batch("padding");
+}
+
+// =============================
+// Core Viewport Padding Utility Helper Attributes
+// =============================
+
+//
+// Core Viewport Padding Utility Helper Attributes are generated via the below mixin to create attributes for certain viewports.
+// The advantage to this, is it allows padding to be added to a certain element specifically for a breakpoint which you have defined.
+// Example Use - data-desk="pad-r-2x" data-palm="pad-r-0".
+//
+
+//
+// Attribute Name Key
+// -t- = Top
+// -b- = Bottom
+// -l- = Left
+// -r- = Right
+// -e- = Ends  (Top & Bottom)
+// -s- = Sides (Left & Right)
+//
+
+@if ($_viewport-paddings-enable) {
+	@each $viewport, $viewport-val in $viewport-values {
+
+		// Attributes only apply once certain a breakpoint/s is triggered.
+
+		@include media-query($to: nth($viewport-val, 2)) {
+			@include generate-spacing-batch("padding", $namespace: $viewport);
+		}
+
+	}
+}

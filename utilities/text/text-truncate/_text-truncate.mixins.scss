@@ -1,0 +1,38 @@
+// =============================
+// Core Utilities Format Model Text Truncate Mixins
+// =============================
+
+//
+// Prevent text from wrapping onto multiple lines, and truncate with an ellipsis.
+//
+// Parameter Description:
+//
+// $width     - The width you would like the targeted element to truncate at. Example: 100px. Default is 100%.
+// $important - A boolean value which specifies if the value should contain the !important flag. True is default.
+//
+// Notes:
+//
+// 1. Ensure that the node has a maximum width after which truncation can occur.
+// 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor nodes.
+//
+// Example Use:
+//
+// @include text-truncate(100px);
+//
+
+@mixin text-truncate($width: 100%, $important: true) {
+  @if ($important) {
+    max-width: #{$width} !important;    // 1
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    word-wrap: normal !important;       // 2
+  }
+  @else {
+    max-width: #{$width};   // 1
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;      // 2
+  }
+}

@@ -1,0 +1,15 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_text-truncate-enable: true !default;
+
+// =============================
+// Core Text Truncation Utility Helper Class
+// =============================
+
+@if ($_text-truncate-enable) {
+	.text-truncate {
+		@include text-truncate();
+	}
+}

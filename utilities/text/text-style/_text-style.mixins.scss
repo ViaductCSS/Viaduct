@@ -1,0 +1,69 @@
+// =============================
+// Core Utilities Format Model Text Alignment Mixins
+// =============================
+
+//
+// Returns the font-weight property with the value provided for the element which you are targeting.
+//
+// Parameter Description:
+//
+// $value     - The weight as either a number or keyword of which you would like to set the element the mixin is being used for. Example: bold
+// $important - A boolean value which specifies if the value should contain the !important flag. False is default.
+//
+// Example Use:
+//
+// @include font-weight(bold, true); // Returns font-weight: bold !important;
+//
+
+@mixin font-weight($value, $important: false) {
+  @if ($important) {
+    font-weight: #{$value} !important;
+  }
+  @else {
+    font-weight: #{$value};
+  }
+}
+
+//
+// Returns the font-style property with the value provided for the element which you are targeting.
+//
+// Parameter Description:
+//
+// $value     - The style as a keyword of which you would like to set the element the mixin is being used for. Example: italic
+// $important - A boolean value which specifies if the value should contain the !important flag. False is default.
+//
+// Example Use:
+//
+// @include font-style(italic, true); // Returns font-style: italic !important;
+//
+
+@mixin font-style($value, $important: false) {
+  @if ($important) {
+    font-style: #{$value} !important;
+  }
+  @else {
+    font-style: #{$value};
+  }
+}
+
+//
+// Returns the text-transform property with the value provided for the element which you are targeting.
+//
+// Parameter Description:
+//
+// $value     - The value as a keyword of which you would like to set the element the mixin is being used for. Example: uppercase
+// $important - A boolean value which specifies if the value should contain the !important flag. False is default.
+//
+// Example Use:
+//
+// @include text-transform(uppercase, true); // Returns text-transform: uppercase !important;
+//
+
+@mixin text-transform($value, $important: false) {
+  @if ($important) {
+    text-transform: #{$value} !important;
+  }
+  @else {
+    text-transform: #{$value};
+  }
+}

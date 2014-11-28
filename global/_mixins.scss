@@ -1,5 +1,5 @@
 // =============================
-// Core REM Sizing Mixin
+// Core Global REM Sizing Mixin
 // =============================
 
 //
@@ -31,7 +31,7 @@
 }
 
 // =============================
-// Core Media Query Mixin
+// Core Global Media Query Mixin
 // =============================
 
 //
@@ -88,7 +88,7 @@
 }
 
 // =============================
-// Core Generate Spacing Single Mixin
+// Core Global Generate Spacing Single Mixin
 // =============================
 
 //
@@ -125,10 +125,11 @@
     $amount: str-slice($unit, 1, 1);
     @include rem-sizing(#{$property}, $base-spacing-unit * to-number(amount));
   }
+
 }
 
 // =============================
-// Core Generate Spacing Mixin
+// Core Global Generate Spacing Mixin
 // =============================
 
 //
@@ -147,57 +148,56 @@
 @mixin generate-spacing-batch($property: 'padding', $units: $global-spacing-values, $namespace: null) {
 
   @each $unit in $units {
+    $_prop-namespace: str-slice($property, 1, 3);
 
-      $_prop-namespace: str-slice($property, 1, 3);
-
-      @if $namespace != null {
-        @if $property == "margin" {
-            [data-#{$namespace}~="#{$_prop-namespace}-#{$unit}"] {
-              @include generate-spacing-single($property, $unit, ('right', 'bottom'));
-            }
-        } @else {
-            [data-#{$namespace}~="#{$_prop-namespace}-#{$unit}"] {
-              @include generate-spacing-single($property, $unit, ('top', 'right', 'bottom', 'left'));
-            }
+    @if $namespace != null {
+      @if $property == "margin" {
+        [data-#{$namespace}~="#{$_prop-namespace}-#{$unit}"] {
+          @include generate-spacing-single($property, $unit, ('right', 'bottom'));
         }
       } @else {
-        @if $property == "margin" {
-            [class~="#{$_prop-namespace}-#{$unit}"] {
-              @include generate-spacing-single($property, $unit, ('right', 'bottom'));
-            }
-        } @else {
-            [class~="#{$_prop-namespace}-#{$unit}"] {
-              @include generate-spacing-single($property, $unit, ('top', 'right', 'bottom', 'left'));
-            }
+        [data-#{$namespace}~="#{$_prop-namespace}-#{$unit}"] {
+          @include generate-spacing-single($property, $unit, ('top', 'right', 'bottom', 'left'));
         }
       }
-
-      @each $direction, $positions in $global-spacing-directions {
-
-          @if $direction == false {
-              $direction: '';
-          } @else {
-              $direction: "-#{$direction}";
-          }
-
-          @if $namespace != null {
-              [data-#{$namespace}~="#{$_prop-namespace}#{$direction}-#{$unit}"] {
-                @include generate-spacing-single($property, $unit, $positions);
-              }
-          } @else {
-              [class~="#{$_prop-namespace}#{$direction}-#{$unit}"] {
-                @include generate-spacing-single($property, $unit, $positions);
-              }
-          }
-
+    } @else {
+      @if $property == "margin" {
+        [class~="#{$_prop-namespace}-#{$unit}"] {
+          @include generate-spacing-single($property, $unit, ('right', 'bottom'));
+        }
+      } @else {
+        [class~="#{$_prop-namespace}-#{$unit}"] {
+          @include generate-spacing-single($property, $unit, ('top', 'right', 'bottom', 'left'));
+        }
       }
+    }
+
+    @each $direction, $positions in $global-spacing-directions {
+
+        @if $direction == false {
+          $direction: '';
+        } @else {
+          $direction: "-#{$direction}";
+        }
+
+        @if $namespace != null {
+          [data-#{$namespace}~="#{$_prop-namespace}#{$direction}-#{$unit}"] {
+            @include generate-spacing-single($property, $unit, $positions);
+          }
+        } @else {
+          [class~="#{$_prop-namespace}#{$direction}-#{$unit}"] {
+            @include generate-spacing-single($property, $unit, $positions);
+          }
+        }
+
+    }
 
   }
 
 }
 
 // =============================
-// Generate Grid Percentage Single Mixin
+// Generate Global Grid Percentage Single Mixin
 // =============================
 
 //
@@ -233,14 +233,28 @@
 
   @while $_cols > 0 {
 
-      @for $i from 1 through ($_cols) {
+    @for $i from 1 through ($_cols) {
+      // Generate the length.
+      $col-width: (100 / $_cols * $i);
+      $length:    (percentage($col-width / 100));
 
-        // Generate the length.
+      // Generate the data attribute or class attribute dependent on if $viewport is set.
 
-        $col-width: (100 / $_cols * $i);
-        $length:    (percentage($col-width / 100));
+      @if ($viewport) {
+        $current-attribute: "[data-#{$viewport}~='#{$_namespace}#{$i}/#{$_cols}']";
+      } @else {
+        $current-attribute: "[class~='#{$_namespace}#{$i}/#{$_cols}']";
+      }
 
-        // Generate the data attribute or class attribute dependent on if $viewport is set.
+      @if $i == $_cols {
+
+        @if ($viewport) {
+          $current-attribute: "[data-#{$viewport}~='#{$_namespace}1x']";
+        } @else {
+          $current-attribute: "[class~='#{$_namespace}1x']";
+        }
+
+      } @else {
 
         @if ($viewport) {
           $current-attribute: "[data-#{$viewport}~='#{$_namespace}#{$i}/#{$_cols}']";
@@ -248,54 +262,37 @@
           $current-attribute: "[class~='#{$_namespace}#{$i}/#{$_cols}']";
         }
 
-        @if $i == $_cols {
-
-          @if ($viewport) {
-            $current-attribute: "[data-#{$viewport}~='#{$_namespace}1x']";
-          } @else {
-            $current-attribute: "[class~='#{$_namespace}1x']";
-          }
-
-        } @else {
-
-          @if ($viewport) {
-            $current-attribute: "[data-#{$viewport}~='#{$_namespace}#{$i}/#{$_cols}']";
-          } @else {
-            $current-attribute: "[class~='#{$_namespace}#{$i}/#{$_cols}']";
-          }
-
-        }
-
-        // Empty class for scoping.
-
-        $new-attribute: "";
-
-        //
-        // Check if $length is not in $length-storage as a key.
-        // Note: Unquote on insert otherwise $current-attribute will be quoted by default
-        // and will cause output to also be quoted.
-        //
-
-        @if not map-has-key($length-storage, $length) {
-            $new-attribute: ($length: unquote($current-attribute));
-        } @else {
-
-            // Get list of matched attributes.
-
-            $attributes: map-get($length-storage, $length);
-
-            // Append $current-attribute to the $attributes as a comma-seperated list.
-
-            $new-attribute: ($length: append(unquote($current-attribute), $attributes, comma));
-        }
-
-        // Merge the $new-class into the $length-storage.
-
-        $length-storage: map-merge($length-storage, $new-attribute);
-
       }
 
-      $_cols: $_cols - 1;
+      // Empty class for scoping.
+      $new-attribute: "";
+
+      //
+      // Check if $length is not in $length-storage as a key.
+      // Note: Unquote on insert otherwise $current-attribute will be quoted by default
+      // and will cause output to also be quoted.
+      //
+
+      @if not map-has-key($length-storage, $length) {
+        $new-attribute: ($length: unquote($current-attribute));
+      } @else {
+
+        // Get list of matched attributes.
+
+        $attributes: map-get($length-storage, $length);
+
+        // Append $current-attribute to the $attributes as a comma-seperated list.
+
+        $new-attribute: ($length: append(unquote($current-attribute), $attributes, comma));
+      }
+
+      // Merge the $new-class into the $length-storage.
+
+      $length-storage: map-merge($length-storage, $new-attribute);
+
+    }
+
+    $_cols: $_cols - 1;
 
   }
 
@@ -312,7 +309,7 @@
 }
 
 // =============================
-// Core Generate Grid Percentage Batch Mixin
+// Core Global Generate Grid Percentage Batch Mixin
 // =============================
 
 //

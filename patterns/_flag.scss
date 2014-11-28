@@ -50,57 +50,59 @@ $flag-pattern-reversed-enable: true !default;
 
 @if ($flag-pattern-enable) {
 
-    .flag,
-    %flag {
-      display: table;
+  .flag,
+  %flag {
+    display: table;
 
-      // .flag__sidebar
-      // .flag__body
-      // .flag__sidebar--bottom
-      // .flag__body--bottom
+    // .flag__sidebar
+    // .flag__body
+    // .flag__sidebar--bottom
+    // .flag__body--bottom
 
-      &__sidebar,
-      &__body,
-      &__sidebar--bottom,
-      &__body--bottom {
-        display: table-cell;
-      }
-
-      // .flag__sidebar
-      // .flag__body
-
-      &__sidebar,
-      &__body {
-        @extend %valign;
-      }
-
-      // .flag__sidebar--bottom
-      // .flag__body--bottom
-
-      &__sidebar--bottom,
-      &__body--bottom {
-          vertical-align: bottom;
-      }
-
+    &__sidebar,
+    &__body,
+    &__sidebar--bottom,
+    &__body--bottom {
+      display: table-cell;
     }
 
-    [class*="flag__sidebar"] img {
-        display: block;
-        max-width: none;
+    // .flag__sidebar
+    // .flag__body
+
+    &__sidebar,
+    &__body {
+      @include vertical-align(middle, inline-block, true);
     }
+
+    // .flag__sidebar--bottom
+    // .flag__body--bottom
+
+    &__sidebar--bottom,
+    &__body--bottom {
+      @include vertical-align(bottom);
+    }
+
+  }
+
+  [class*="flag__sidebar"] img {
+    display: block;
+    max-width: none;
+  }
 
 }
 
 // Set Direction to reverse the layout of the pattern elements.
 
 @if ($flag-pattern-enable and $flag-pattern-reversed-enable) {
-    .flag--rev {
-        @extend %flag;
-        direction: rtl;
 
-        * {
-            direction: ltr;
-        }
+  .flag--rev {
+    @extend %flag;
+    direction: rtl;
 
+    * {
+      direction: ltr;
     }
+
+  }
+
 }

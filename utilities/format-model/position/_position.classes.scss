@@ -1,0 +1,56 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_position-enable:          true !default;
+$_viewport-position-enable: true !default;
+
+// =============================
+// Core Position Utility Helper Classes
+// =============================
+
+//
+// Un-namespaced Classes are to be used globally when an elements layout is consistant across all viewports.
+//
+
+@if ($_position-enable) {
+	.position-static   {
+		@include position(static, true);
+	}
+	.position-relative {
+		@include position(relative, true);
+	}
+	.position-absolute {
+		@include position(absolute, true);
+	}
+}
+
+// =============================
+// Core Viewport Position Utility Helper Attributes
+// =============================
+
+//
+// Core Viewport Position Utility Helper Attributes are generated via the below loop to create attributes for certain viewports.
+// The advantage to this, is it allows position to be added to a certain element specifically for a breakpoint which you have defined.
+// Example Use - data-desk="position-absolute" data-lap="position-static".
+//
+
+@if ($_viewport-position-enable) {
+	@each $viewport, $breakpoint in $viewport-values {
+
+		// Attributes only apply once certain breakpoint is triggered.
+
+		@include media-query($to: nth($breakpoint, 2)) {
+			[data-#{$viewport}~="position-static"]   {
+				@include position(static, true);
+			}
+			[data-#{$viewport}~="position-relative"] {
+				@include position(relative, true);
+			}
+			[data-#{$viewport}~="position-absolute"] {
+				@include position(absolute, true);
+			}
+		}
+
+	}
+}

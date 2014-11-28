@@ -29,7 +29,7 @@
 //
 // Parameter Description:
 //
-// $target  - The value (in pixels) of the elements property you are setting the EM value for.
+// $values  - The value/s (in pixels) of the elements property you are setting the EM value for.
 // $context - The value (in pixels) of the parent elements property. Defaults to $base-font-size.
 //
 // Example Use:
@@ -103,9 +103,14 @@
 // Note - This is required for converting the base-font-size into
 // a pixel value for the <html> element.
 //
+// Parameter Description:
+//
+// $numbers  - The number/s you would like to convert to pixel based values.
+//
 // Example Use:
 //
 // to-pixel(16);
+// to-pixel(16 20 25) // Can take multiple values in the first parameter.
 //
 
 @function to-pixel($numbers) {

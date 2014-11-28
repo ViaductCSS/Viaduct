@@ -1,0 +1,25 @@
+// =============================
+// Core Utilities Format Model Float Mixin
+// =============================
+
+//
+// Returns the float property with the value provided for the element which you are targeting.
+//
+// Parameter Description:
+//
+// $value     - The direction of which you would like to float the element the mixin is being used for. Example: left
+// $important - A boolean value which specifies if the value should contain the !important flag.
+//
+// Example Use:
+//
+// @include float(left, true); // Returns float: left !important;
+//
+
+@mixin float($value, $important: false) {
+  @if ($important) {
+    float: #{$value} !important;
+  }
+  @else {
+    float: #{$value};
+  }
+}

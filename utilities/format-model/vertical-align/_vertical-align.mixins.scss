@@ -1,0 +1,31 @@
+// =============================
+// Core Utilities Format Model Vertical Align Mixin
+// =============================
+
+//
+// Returns the vertical-align property with the value provided for the element which you are targeting.
+//
+// Parameter Description:
+//
+// $value     - The value as a keyword or unit value, of which you would like to vertical-align the element the mixin is being used for. Example: middle.
+// $display   - The value as a keyword, of which you would like to set the display property of, for the targeted element. Example: inline-block. Defaults to False.
+// $important - A boolean value which specifies if the value should contain the !important flag. False is default
+//
+// Example Use:
+//
+// @include vertical-align(middle, true); // Returns vertical-align: middle !important;
+//
+
+@mixin vertical-align($value, $display: false, $important: false) {
+  @if ($important and $display) {
+    vertical-align: #{$value} !important;
+    display: #{$display} !important;
+  }
+  @elseif ($important != true and $display) {
+    vertical-align: #{$value};
+    display: #{$display};
+  }
+  @else {
+    vertical-align: #{$value};
+  }
+}

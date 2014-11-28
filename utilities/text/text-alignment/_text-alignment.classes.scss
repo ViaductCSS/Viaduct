@@ -1,0 +1,55 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_text-alignment-enable:          true !default;
+$_viewport-text-alignment-enable: true !default;
+
+// =============================
+// Core Text Alignment Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements alignment is consistant across all viewports.
+
+@if ($_text-alignment-enable) {
+	.text-left   {
+		@include text-align(left, true);
+	}
+	.text-right  {
+		@include text-align(right, true);
+	}
+	.text-center {
+		@include text-align(center, true);
+	}
+}
+
+// =============================
+// Core Viewport Text Alignment Utility Helper Attributes
+// =============================
+
+//
+// Viewport Text Alignment Utility Helper Attributes are generated via the below function for certain viewports.
+// The advantage to this, is it allows alignment to be added to a certain element specifically for a breakpoint which you have
+// defined.
+// Example Use - data-desk="text-left" data-lap="text-center".
+//
+
+@if ($_viewport-text-alignment-enable) {
+	@each $viewport, $breakpoint in $viewport-values {
+
+		// Attributes only apply once certain breakpoint is triggered.
+
+		@include media-query($to: nth($breakpoint, 2)) {
+			[data-#{$viewport}~="text-left"]   {
+				@include text-align(left, true);
+			}
+			[data-#{$viewport}~="text-right"]  {
+				@include text-align(right, true);
+			}
+			[data-#{$viewport}~="text-center"] {
+				@include text-align(center, true); 
+			}
+		}
+
+	}
+}

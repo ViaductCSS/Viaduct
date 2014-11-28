@@ -1,0 +1,72 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_visibility-enable:          true !default;
+$_viewport-visibility-enable: true !default;
+
+// =============================
+// Core Visibility Utility Helper Classes
+// =============================
+
+// Un-namespaced Classes are to be used globally when an elements visibility is consistant across all viewports.
+
+@if ($_visibility-enable) {
+  .is-hidden {
+    @include is-hidden();
+  }
+
+  //
+  // Accessibly hide content:
+  // http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+  //
+
+  .is-hidden-visually {
+    @include is-hidden-visually();
+  }
+
+  .is-visible {
+    @include is-visible();
+  }
+
+}
+
+// =============================
+// Visibility Utility Helper Attributes
+// =============================
+
+@if ($_viewport-visibility-enable) {
+  @each $viewport, $breakpoint in $viewport-values {
+
+    // Attributes only apply once certain breakpoint is triggered.
+
+    @include media-query($to: nth($breakpoint, 2)) {
+
+      //
+    	// Is Hidden Utility Helper Attribute removes elements completely from document, making them not
+    	// visible to screen readers.
+      // Example Use - data-desk="is-hidden".
+      //
+
+    	[data-#{$viewport}~="is-hidden"] {
+        @include is-hidden();
+    	}
+
+      //
+    	// Is Hidden Utility Helper Attribute removes elements from the flow of the document, but they are still
+    	// visible to screen readers.
+    	// Example - data-desk="desk-is-hidden".
+      //
+
+    	[data-#{$viewport}~="is-hidden-visually"] {
+        @include is-hidden-visually();
+    	}
+
+      [data-#{$viewport}~="is-visible"] {
+        @include is-visible();
+      }
+
+    }
+
+  }
+}

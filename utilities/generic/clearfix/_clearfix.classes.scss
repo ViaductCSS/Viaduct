@@ -1,0 +1,15 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_clearfix-enable: true !default;
+
+// =============================
+// Core Clearfix Utility Helper Class
+// =============================
+
+@if ($_clearfix-enable) {
+	.clearfix {
+		@include clearfix();
+	}
+}

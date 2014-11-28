@@ -1,0 +1,84 @@
+// =============================
+// Core Utilities State Visibility Mixins
+// =============================
+
+//
+// Displays the targeted element as hidden to both users and AT.
+//
+// Parameter Description:
+//
+// $important - A boolean value which specifies if the value should contain the !important flag. True by default.
+//
+// Example Use:
+//
+// @include is-hidden();
+//
+
+@mixin is-hidden($important: true) {
+  @if ($important) {
+    display: none      !important;
+    visibility: hidden !important;
+  }
+  @else {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+//
+// Displays the targeted element as hidden to just the document and users, but not AT.
+//
+// Parameter Description:
+//
+// $important - A boolean value which specifies if the value should contain the !important flag. True by default.
+//
+// Example Use:
+//
+// @include is-hidden-visually();
+//
+
+@mixin is-hidden-visually($important: true) {
+  @if ($important) {
+    @include position(absolute, true);
+    overflow: hidden               !important;
+    width: 1px                     !important;
+    height: 1px                    !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+  }
+  @else {
+    @include position(absolute);
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+}
+
+//
+// Displays the targeted element as visible.
+//
+// Parameter Description:
+//
+// $important - A boolean value which specifies if the value should contain the !important flag. True by default.
+//
+// Example Use:
+//
+// @include is-visible();
+//
+
+@mixin is-visible($important: true) {
+  @if ($important) {
+    display: block       !important;
+    visibility: visible  !important;
+    @include position(static, true);
+    width: auto          !important;
+    height: auto         !important;
+  }
+  @else {
+    display: block;
+    visibility: visible;
+    @include position(static);
+    width: auto;
+    height: auto;
+  }
+}

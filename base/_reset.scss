@@ -15,8 +15,8 @@ dl, dd, ol, ul,
 form, fieldset, legend,
 table, th, td, caption,
 hr {
-    margin:  0;
-    padding: 0;
+  margin:  0;
+  padding: 0;
 }
 
 //
@@ -26,11 +26,11 @@ hr {
 
 @if $_global-box-sizing == true {
 	* {
-	    &,
-	    &:before,
-	    &:after {
-	        box-sizing: border-box;
-	    }
+    &,
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
 	}
 }
 
@@ -44,10 +44,10 @@ hr {
 //
 
 html {
-    background-color: $base-background-color;
-    color: $base-text-color;
-    font-family: $font-family-alpha;
-    font-size: to-pixel($base-font-size); // 1
-    overflow-y: scroll;                   // 2
-    min-height: 100%;                     // 3
+  background-color: $base-background-color;
+  color: $base-text-color;
+  font-family: $font-family-alpha;
+  font-size: to-pixel($base-font-size); // 1
+  overflow-y: scroll;                   // 2
+  min-height: 100%;                     // 3
 }

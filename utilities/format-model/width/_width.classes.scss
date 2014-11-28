@@ -1,0 +1,21 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_widths-enable: true !default;
+
+// =============================
+// Core Viewport Width Utility Helper Attributes
+// =============================
+
+//
+// Core Viewport Width Utility Helper Attributes are generated via the below mixin to create attributes for certain viewports.
+// The advantage to this, is it allows a responsive layout to be generated from the attributes added to a certain element.
+// Example Use: data-desk="span-4-12" data-lap="span-4/6".
+//
+// Note - Global Classes are also generated and are to be used when an elements spacing is consistant across all viewports.
+//
+
+@if ($_widths-enable) {
+	@include generate-grid-percentage-batch();
+}

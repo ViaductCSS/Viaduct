@@ -1,0 +1,25 @@
+// =============================
+// Core Utilities Format Model Position Mixin
+// =============================
+
+//
+// Returns the position property with the value provided for the element which you are targeting.
+//
+// Parameter Description:
+//
+// $value     - The value of which you would like to position the element the mixin is being used for. Example: absolute
+// $important - A boolean value which specifies if the value should contain the !important flag.
+//
+// Example Use:
+//
+// @include position(relative, true); // Returns position: relative !important;
+//
+
+@mixin position($value, $important: false) {
+  @if ($important) {
+    position: #{$value} !important;
+  }
+  @else {
+    position: #{$value};
+  }
+}
