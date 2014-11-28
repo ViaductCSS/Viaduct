@@ -1,5 +1,5 @@
 // =============================
-// Core Utility Mixin Partial Import
+// Core Utility Mixins Partial Import
 // =============================
 
 @import 'utilities/all.mixins';
@@ -17,13 +17,19 @@
 @import 'base/all';
 
 // =============================
-// Core Pattern Partial Import
+// Core Patterns Partial Import
 // =============================
 
 @import 'patterns/all';
 
 // =============================
-// Core Utility Class Partial Import
+// Core Components Partial Import
+// =============================
+
+@import 'components/all';
+
+// =============================
+// Core Utility Classes Partial Import
 // =============================
 
 @import 'utilities/all.classes';

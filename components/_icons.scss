@@ -1,0 +1,25 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_icons-component-enable: true;
+
+// =============================
+// Core Icon Component Styling
+// =============================
+
+// 1. Better Font Rendering
+
+@if ($_icons-component-enable) {
+  [class^="icon--"],
+  [class*=" icon--"] {
+    speak: none;
+    @include font-style(normal);
+    @include font-weight(normal);
+    font-variant: normal;
+    @include text-transform(normal);
+    line-height: 1;
+    -webkit-font-smoothing: antialiased; // 1
+    -moz-osx-font-smoothing: grayscale;  // 1
+  }
+}

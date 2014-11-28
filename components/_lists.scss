@@ -1,0 +1,90 @@
+// =============================
+// Enable Private Variables
+// =============================
+
+$_list-component-enable:        true !default;
+$_list-component-inline-enable: true !default;
+$_list-component-block-enable:  true !default;
+$_list-component-clean-enable:  true !default;
+
+// =============================
+// Core List Component Styling
+// =============================
+
+//
+// Core List Component displays a list of elements by default as inline level.
+// Note - Margin and Padding are removed as they are added by the browser for <ul> and <ol> by default.
+//
+
+@if ($_list-component-enable) {
+  .list,
+  %list {
+    margin: 0;
+    padding: 0;
+    @include clearfix();
+  }
+}
+
+// =============================
+// Core List Component Inline Modifier Styling
+// =============================
+
+//
+// Core List Component Inline Modifier displays a list of elements as inline-block level.
+//
+
+@if ($_list-component-enable and $_list-component-inline-enable) {
+  .list-inline {
+    @extend %list;
+
+    > li {
+
+      &,
+      > a {
+        display: inline-block;
+      }
+
+    }
+
+  }
+}
+
+// =============================
+// Core List Component Block Modifier Styling
+// =============================
+
+//
+// Core List Component Block Modifier displays a list of elements as block level.
+//
+
+@if ($_list-component-enable and $_list-component-block-enable) {
+  .list--block {
+    @extend %list;
+
+    > li {
+      display: list-item;
+
+      > a {
+        display: block;
+      }
+
+    }
+
+  }
+}
+
+// =============================
+// Core List Component Clean Modifier Styling
+// =============================
+
+//
+// Core List Component Clean Modifier displays a list of elements without any list style applied.
+// Note - Acts as a clean slate for your design.
+//
+
+@if ($_list-component-enable and $_list-component-clean-enable) {
+  .list--clean {
+    @extend %list;
+    list-style: none;
+  }
+}
