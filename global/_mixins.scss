@@ -79,7 +79,7 @@
     @if ($_and)       { $_query: '#{$_query} and #{$_and}';               }
   }
 
-  $_query: unquote(#{$_query});
+  $_query: unquote("#{$_query}");
 
   @media all #{$_query} {
     @content;
